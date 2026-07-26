@@ -3,7 +3,7 @@
 Target 3:10 to 3:30. Hard max 5:00. Read it at normal talking speed, don't rush.
 
 Before you hit record: close your terminal, close VS Code, close the tab with `.env.local` in it.
-Have `https://boardbridge-bd.vercel.app` open in one clean window and `media/13-architecture.png`
+Have `https://boardbridge-bd.vercel.app` open in one clean window and `13-architecture.png`
 open in a second tab so you can flip to it at the end.
 
 Talk like you're showing this to a friend. Stumbling once is fine. Reading it perfectly is worse.
@@ -18,7 +18,7 @@ Talk like you're showing this to a friend. Stumbling once is fine. Reading it pe
 > basically gone. I spent longer copying that board out than I would have spent sitting in
 > the lecture.
 
-**Screen:** the board photo full screen (`media/10-input-board-mixed-bn-en.jpg`). Just let it sit there.
+**Screen:** the board photo full screen (`mixed_notes.jpg`, the one you downloaded). Just let it sit there.
 
 ---
 
@@ -110,7 +110,7 @@ let the source chips and the 100% number be readable.
 > second. It also got a word wrong, হ্যাঁ came out as হাঁ, and it did not flag that one. That's
 > written up in the repo with the raw API responses, so you can check the numbers yourself.
 
-**Screen:** `media/14-results.png`.
+**Screen:** `14-results.png`.
 
 ---
 
@@ -120,7 +120,7 @@ let the source chips and the 100% number be readable.
 > Gemma reads the board. The app checks the output. I fix what's wrong. Then it builds the
 > study pack. Thanks for watching.
 
-**Screen:** `media/13-architecture.png`, hold for two seconds, stop recording.
+**Screen:** `13-architecture.png`, hold for two seconds, stop recording.
 
 ---
 
