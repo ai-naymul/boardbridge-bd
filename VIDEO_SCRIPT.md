@@ -1,4 +1,4 @@
-# BoardBridge BD — demo video script
+# BoardBridge BD demo video script
 
 Target 3:10 to 3:30. Hard max 5:00. Read it at normal talking speed, don't rush.
 
@@ -10,7 +10,7 @@ Talk like you're showing this to a friend. Stumbling once is fine. Reading it pe
 
 ---
 
-## 0:00 — the problem
+## 0:00 the problem
 
 **Say:**
 > Last semester I missed a class. What I got was one photo of the whiteboard on WhatsApp.
@@ -22,7 +22,7 @@ Talk like you're showing this to a friend. Stumbling once is fine. Reading it pe
 
 ---
 
-## 0:22 — what it is
+## 0:22 what it is
 
 **Say:**
 > So I built BoardBridge. You give it the photo, it gives you back notes you can actually
@@ -37,7 +37,7 @@ Talk like you're showing this to a friend. Stumbling once is fine. Reading it pe
 
 ---
 
-## 0:48 — upload
+## 0:48 upload
 
 **Say:**
 > Here's the board. Let me upload it.
@@ -46,7 +46,7 @@ Talk like you're showing this to a friend. Stumbling once is fine. Reading it pe
 
 ---
 
-## 1:05 — what came back
+## 1:05 what came back
 
 **Say:**
 > About thirty seconds. Gemma read it and came back with ten separate pieces, not one blob of
@@ -58,7 +58,7 @@ Talk like you're showing this to a friend. Stumbling once is fine. Reading it pe
 
 ---
 
-## 1:32 — the uncertainty (this is the part judges remember)
+## 1:32 the uncertainty (this is the part judges remember)
 
 **Say:**
 > Now the part I actually care about. Look at r9. Those two words are blurred on the real
@@ -70,7 +70,7 @@ textarea**. Show the "edited by you" chip appearing.
 
 ---
 
-## 1:58 — the second call
+## 1:58 the second call
 
 **Say:**
 > Then the second call. It only gets my corrected text. The photo is not sent again, so my
@@ -80,7 +80,7 @@ textarea**. Show the "edited by you" chip appearing.
 
 ---
 
-## 2:15 — the output
+## 2:15 the output
 
 **Say:**
 > Notes. The code. Flashcards. And every one of these points back to the region it came from.
@@ -92,7 +92,7 @@ let the source chips and the 100% number be readable.
 
 ---
 
-## 2:45 — the refusal
+## 2:45 the refusal
 
 **Say:**
 > One more. This is a photo you genuinely cannot read. Zero regions. Quality unusable. It
@@ -103,7 +103,7 @@ let the source chips and the 100% number be readable.
 
 ---
 
-## 3:05 — honest numbers
+## 3:05 honest numbers
 
 **Say:**
 > I tested three boards. Ten out of ten facts on the first one, eight out of eight on the
@@ -114,7 +114,7 @@ let the source chips and the 100% number be readable.
 
 ---
 
-## 3:25 — close
+## 3:25 close
 
 **Say:**
 > Gemma reads the board. The app checks the output. I fix what's wrong. Then it builds the
