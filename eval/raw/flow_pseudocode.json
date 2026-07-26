@@ -1,0 +1,288 @@
+{
+  "image": "flow_pseudocode.jpg",
+  "extractStatus": 200,
+  "extractSec": 32.5,
+  "meta": {
+    "model": "gemma-4-31b-it",
+    "latencyMs": 32519,
+    "repaired": false
+  },
+  "artifact": {
+    "schemaVersion": "1.0",
+    "title": "BFS - Flowchart and Pseudocode",
+    "detectedLanguages": [
+      "bn",
+      "en"
+    ],
+    "imageQuality": "good",
+    "regions": [
+      {
+        "id": "r1",
+        "order": 0,
+        "type": "heading",
+        "transcription": "BFS — ছক (flowchart)",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r2",
+        "order": 1,
+        "type": "flowchart_node",
+        "transcription": "Start / শুরু",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r3",
+        "order": 2,
+        "type": "flowchart_node",
+        "transcription": "queue ← [source]",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "en"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r4",
+        "order": 3,
+        "type": "flowchart_node",
+        "transcription": "queue খালি ?",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r5",
+        "order": 4,
+        "type": "flowchart_node",
+        "transcription": "u ← dequeue()",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "en"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r6",
+        "order": 5,
+        "type": "flowchart_node",
+        "transcription": "visit করা হয়নি এমন\nneighbour enqueue",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r7",
+        "order": 6,
+        "type": "flowchart_edge",
+        "transcription": "হাঁ → End",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r8",
+        "order": 7,
+        "type": "flowchart_edge",
+        "transcription": "loop",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "en"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r9",
+        "order": 8,
+        "type": "heading",
+        "transcription": "PSEUDOCODE",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "en"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r10",
+        "order": 9,
+        "type": "pseudocode",
+        "transcription": "BFS(G, s):\n    for each v in V: dist[v] = INF\n    dist[s] = 0\n    Q = [s]\n    while Q not empty:\n        u = Q.pop(0)\n        for v in adj[u]:\n            if dist[v] == INF:\n                dist[v] = dist[u] + 1\n                Q.append(v)",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "en"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r11",
+        "order": 10,
+        "type": "formula",
+        "transcription": "সময় জটিলতা: O(V + E)",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r12",
+        "order": 11,
+        "type": "paragraph",
+        "transcription": "adjacency list ব্যবহার করলে",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      }
+    ],
+    "codeBlocks": [
+      {
+        "language": "python",
+        "code": "BFS(G, s):\n    for each v in V: dist[v] = INF\n    dist[s] = 0\n    Q = [s]\n    while Q not empty:\n        u = Q.pop(0)\n        for v in adj[u]:\n            if dist[v] == INF:\n                dist[v] = dist[u] + 1\n                Q.append(v)",
+        "sourceRegionIds": [
+          "r10"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "studypackStatus": 200,
+  "studypackSec": 28.2,
+  "meta2": {
+    "model": "gemma-4-31b-it",
+    "latencyMs": 28246,
+    "repaired": false
+  },
+  "sourceSupportRate": 100,
+  "derivedCount": 9,
+  "supportedCount": 9,
+  "pack": {
+    "schemaVersion": "1.0",
+    "notesMarkdown": "# BFS - Breadth First Search\n\n## Flowchart (ছক)\n- **শুরু (Start):** source node-টি queue-তে রাখা হয়।\n- **চেক:** queue খালি কি না তা দেখা হয়।\n- **প্রসেস:** \n    - queue থেকে একটি node (u) dequeue করা হয়।\n    - u-এর এমন সব neighbour-দের enqueue করা হয় যাদের visit করা হয়নি।\n- **লুপ:** এই প্রক্রিয়াটি ততক্ষণ চলে যতক্ষণ queue খালি না হয়।\n- **শেষ (End):** queue খালি হলে প্রক্রিয়াটি শেষ হয়।\n\n## Pseudocode\nBFS অ্যালগরিদমটি নিচের কোড অনুযায়ী কাজ করে:\n\n```python\nBFS(G, s):\n    for each v in V: dist[v] = INF\n    dist[s] = 0\n    Q = [s]\n    while Q not empty:\n        u = Q.pop(0)\n        for v in adj[u]:\n            if dist[v] == INF:\n                dist[v] = dist[u] + 1\n                Q.append(v)\n```\n\n## Complexity (জটিলতা)\n- **সময় জটিলতা (Time Complexity):** $O(V + E)$\n- **শর্ত:** এটি adjacency list ব্যবহার করলে প্রযোজ্য।",
+    "keyTerms": [
+      {
+        "term": "BFS",
+        "bnGloss": "Breadth First Search - একটি গ্রাফ ট্রাভার্সাল অ্যালগরিদম যা লেভেল অনুযায়ী ভিজিট করে।",
+        "sourceRegionIds": [
+          "r1"
+        ],
+        "unsupported": false
+      },
+      {
+        "term": "Queue",
+        "bnGloss": "একটি ডাটা স্ট্রাকচার যেখানে প্রথম আসা ডাটা আগে বের হয় (FIFO)।",
+        "sourceRegionIds": [
+          "r3",
+          "r4",
+          "r5"
+        ],
+        "unsupported": false
+      },
+      {
+        "term": "Adjacency List",
+        "bnGloss": "গ্রাফের নোডগুলোর সংযোগ নির্দেশ করার একটি তালিকা।",
+        "sourceRegionIds": [
+          "r12"
+        ],
+        "unsupported": false
+      },
+      {
+        "term": "Time Complexity",
+        "bnGloss": "ইনপুট সাইজ অনুযায়ী অ্যালগরিদমের সময় কতটুকু লাগে তার পরিমাপ।",
+        "sourceRegionIds": [
+          "r11"
+        ],
+        "unsupported": false
+      }
+    ],
+    "codeBlocks": [
+      {
+        "language": "python",
+        "code": "BFS(G, s):\n    for each v in V: dist[v] = INF\n    dist[v] = 0\n    Q = [s]\n    while Q not empty:\n        u = Q.pop(0)\n        for v in adj[u]:\n            if dist[v] == INF:\n                dist[v] = dist[u] + 1\n                Q.append(v)",
+        "sourceRegionIds": [
+          "r10"
+        ],
+        "unsupported": false
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "BFS-এর জন্য কোন ডাটা স্ট্রাকচার ব্যবহার করা হয়?",
+        "back": "Queue ব্যবহার করা হয়।",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r3",
+          "r5"
+        ],
+        "unsupported": false
+      },
+      {
+        "front": "Adjacency list ব্যবহার করলে BFS-এর সময় জটিলতা কত?",
+        "back": "O(V + E)",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r11",
+          "r12"
+        ],
+        "unsupported": false
+      },
+      {
+        "front": "BFS-এর pseudocode-এ dist[v] == INF এর অর্থ কী?",
+        "back": "এর অর্থ হলো node v-টি এখনো visit করা হয়নি।",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r10"
+        ],
+        "unsupported": false
+      },
+      {
+        "front": "BFS-এর flowchart-এ queue খালি হলে কী হয়?",
+        "back": "প্রক্রিয়াটি শেষ (End) হয়।",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r7"
+        ],
+        "unsupported": false
+      }
+    ],
+    "warnings": []
+  }
+}

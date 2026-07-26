@@ -1,0 +1,297 @@
+{
+  "image": "mixed_notes.jpg",
+  "extractStatus": 200,
+  "extractSec": 28.3,
+  "meta": {
+    "model": "gemma-4-31b-it",
+    "latencyMs": 28305,
+    "repaired": false
+  },
+  "artifact": {
+    "schemaVersion": "1.0",
+    "title": "Hash Table — হ্যাশ টেবিল",
+    "detectedLanguages": [
+      "bn",
+      "en"
+    ],
+    "imageQuality": "good",
+    "regions": [
+      {
+        "id": "r1",
+        "order": 0,
+        "type": "heading",
+        "transcription": "Hash Table — হ্যাশ টেবিল",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r2",
+        "order": 1,
+        "type": "paragraph",
+        "transcription": "কী (key) কে hash function দিয়ে index এ map করা হয়।",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r3",
+        "order": 2,
+        "type": "formula",
+        "transcription": "h(k) = k mod m  ← m = table size (prime নেওয়া ভালো)",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r4",
+        "order": 3,
+        "type": "paragraph",
+        "transcription": "Collision হলে দুইটা উপায়:",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r5",
+        "order": 4,
+        "type": "bullet_list",
+        "transcription": "১) Chaining — প্রতি bucket এ linked list\n২) Open addressing — linear / quadratic probing",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r6",
+        "order": 5,
+        "type": "paragraph",
+        "transcription": "Average case: O(1)    Worst case: O(n)",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "en"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r7",
+        "order": 6,
+        "type": "formula",
+        "transcription": "load factor α = n/m , α > 0.75 হলে resize করতে হবে",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r8",
+        "order": 7,
+        "type": "code",
+        "transcription": "def insert(key, val):\n    i = hash(key) % m\n    while table[i] is not None:\n        i = (i + 1) % m\n    table[i] = (key, val)",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "en"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r9",
+        "order": 8,
+        "type": "label",
+        "transcription": "amortized rehash cost",
+        "confidence": "medium",
+        "uncertainSpans": [
+          "amortized rehash cost"
+        ],
+        "languageTags": [
+          "en"
+        ],
+        "edited": false,
+        "unreadable": false
+      },
+      {
+        "id": "r10",
+        "order": 9,
+        "type": "paragraph",
+        "transcription": "পরীক্ষায় asks: chaining vs probing তুলনা",
+        "confidence": "high",
+        "uncertainSpans": [],
+        "languageTags": [
+          "mixed"
+        ],
+        "edited": false,
+        "unreadable": false
+      }
+    ],
+    "codeBlocks": [
+      {
+        "language": "python",
+        "code": "def insert(key, val):\n    i = hash(key) % m\n    while table[i] is not None:\n        i = (i + 1) % m\n    table[i] = (key, val)",
+        "sourceRegionIds": [
+          "r8"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "studypackStatus": 200,
+  "studypackSec": 30.8,
+  "meta2": {
+    "model": "gemma-4-31b-it",
+    "latencyMs": 30791,
+    "repaired": false
+  },
+  "sourceSupportRate": 100,
+  "derivedCount": 13,
+  "supportedCount": 13,
+  "pack": {
+    "schemaVersion": "1.0",
+    "notesMarkdown": "# Hash Table — হ্যাশ টেবিল\n\n## মূল ধারণা\n- কী (key) কে hash function দিয়ে index এ map করা হয়।\n- **Hash Function:** `h(k) = k mod m` (এখানে `m` হলো table size, যা prime নেওয়া ভালো)।\n\n## Collision Handling\nCollision হলে দুটি উপায় আছে:\n1. **Chaining:** প্রতি bucket এ linked list ব্যবহার করা হয়।\n2. **Open addressing:** linear বা quadratic probing ব্যবহার করা হয়।\n\n## Performance & Scaling\n- **Time Complexity:**\n  - Average case: $O(1)$\n  - Worst case: $O(n)$\n- **Load Factor ($\\alpha$):** $\\alpha = n/m$। যদি $\\alpha > 0.75$ হয়, তবে resize করতে হবে।\n\n## পরীক্ষার জন্য গুরুত্বপূর্ণ\n- Chaining এবং Probing এর মধ্যে তুলনা জানতে চাওয়া হয়।",
+    "keyTerms": [
+      {
+        "term": "Hash Table",
+        "bnGloss": "একটি ডাটা স্ট্রাকচার যেখানে কী-এর মাধ্যমে ডাটা দ্রুত খুঁজে পাওয়া যায়।",
+        "sourceRegionIds": [
+          "r1"
+        ],
+        "unsupported": false
+      },
+      {
+        "term": "Hash Function",
+        "bnGloss": "কী-কে ইনডেক্সে রূপান্তর করার ফাংশন।",
+        "sourceRegionIds": [
+          "r2",
+          "r3"
+        ],
+        "unsupported": false
+      },
+      {
+        "term": "Collision",
+        "bnGloss": "যখন দুটি ভিন্ন কী একই ইনডেক্সে ম্যাপ হয়।",
+        "sourceRegionIds": [
+          "r4"
+        ],
+        "unsupported": false
+      },
+      {
+        "term": "Chaining",
+        "bnGloss": "কলিশন হ্যান্ডেল করার জন্য প্রতিটি ইনডেক্সে লিঙ্কড লিস্ট ব্যবহার করা।",
+        "sourceRegionIds": [
+          "r5"
+        ],
+        "unsupported": false
+      },
+      {
+        "term": "Open addressing",
+        "bnGloss": "কলিশন হলে টেবিলের অন্য খালি জায়গা খোঁজা।",
+        "sourceRegionIds": [
+          "r5"
+        ],
+        "unsupported": false
+      },
+      {
+        "term": "Load Factor",
+        "bnGloss": "টেবিলের পূর্ণতার অনুপাত (n/m)।",
+        "sourceRegionIds": [
+          "r7"
+        ],
+        "unsupported": false
+      }
+    ],
+    "codeBlocks": [
+      {
+        "language": "python",
+        "code": "def insert(key, val):\n    i = hash(key) % m\n    while table[i] is not None:\n        i = (i + 1) % m\n    table[i] = (key, val)",
+        "sourceRegionIds": [
+          "r8"
+        ],
+        "unsupported": false
+      }
+    ],
+    "flashcards": [
+      {
+        "front": "Hash Table-এ কী (key) কে কিভাবে ইনডেক্সে ম্যাপ করা হয়?",
+        "back": "Hash function ব্যবহার করে।",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r2"
+        ],
+        "unsupported": false
+      },
+      {
+        "front": "Hash Table-এর জন্য m (table size) কেমন হওয়া উচিত?",
+        "back": "m এর মান prime হওয়া ভালো।",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r3"
+        ],
+        "unsupported": false
+      },
+      {
+        "front": "Collision হ্যান্ডেল করার দুটি প্রধান উপায় কী কী?",
+        "back": "১) Chaining এবং ২) Open addressing (linear/quadratic probing)।",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r5"
+        ],
+        "unsupported": false
+      },
+      {
+        "front": "Hash Table-এর Average এবং Worst case time complexity কত?",
+        "back": "Average case: O(1), Worst case: O(n)।",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r6"
+        ],
+        "unsupported": false
+      },
+      {
+        "front": "Load factor (α) এর সূত্র কী এবং কখন resize করতে হয়?",
+        "back": "সূত্র: α = n/m। যখন α > 0.75 হয়, তখন resize করতে হবে।",
+        "supportedByUncertainText": false,
+        "sourceRegionIds": [
+          "r7"
+        ],
+        "unsupported": false
+      },
+      {
+        "front": "Amortized rehash cost সম্পর্কে তথ্য আছে কি?",
+        "back": "বোর্ডে 'amortized rehash cost' উল্লেখ আছে, তবে বিস্তারিত আলোচনা করা হয়নি।",
+        "supportedByUncertainText": true,
+        "sourceRegionIds": [
+          "r9"
+        ],
+        "unsupported": false
+      }
+    ],
+    "warnings": [
+      "Region r9 contains uncertain text regarding 'amortized rehash cost'."
+    ]
+  }
+}

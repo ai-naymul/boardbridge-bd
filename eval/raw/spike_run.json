@@ -1,0 +1,71 @@
+{
+  "tier": "A",
+  "model": "gemma-4-31b-it",
+  "latencySec": 18.1,
+  "artifact": {
+    "title": "Hash Table",
+    "detectedLanguages": [
+      "Bengali",
+      "English"
+    ],
+    "imageQuality": "good",
+    "regions": [
+      {
+        "id": "region_1",
+        "order": 1,
+        "type": "header",
+        "transcription": "Hash Table — হ্যাশ টেবিল",
+        "confidence": "high"
+      },
+      {
+        "id": "region_2",
+        "order": 2,
+        "type": "text",
+        "transcription": "কী (key) কে hash function দিয়ে index এ map করা হয়।",
+        "confidence": "high"
+      },
+      {
+        "id": "region_3",
+        "order": 3,
+        "type": "formula",
+        "transcription": "h(k) = k mod m  ← m = table size (prime নেওয়া ভালো)",
+        "confidence": "high"
+      },
+      {
+        "id": "region_4",
+        "order": 4,
+        "type": "text",
+        "transcription": "Collision হলে দুইটা উপায়:\n১) Chaining — প্রতি bucket এ linked list\n২) Open addressing — linear / quadratic probing",
+        "confidence": "high"
+      },
+      {
+        "id": "region_5",
+        "order": 5,
+        "type": "text",
+        "transcription": "Average case: O(1)    Worst case: O(n)",
+        "confidence": "high"
+      },
+      {
+        "id": "region_6",
+        "order": 6,
+        "type": "formula",
+        "transcription": "load factor α = n/m , α > 0.75 হলে resize করতে হবে",
+        "confidence": "high"
+      },
+      {
+        "id": "region_7",
+        "order": 7,
+        "type": "code",
+        "transcription": "def insert(key, val):\n    i = hash(key) % m\n    while table[i] is not None:\n        i = (i + 1) % m\n    table[i] = (key, val)",
+        "confidence": "high"
+      },
+      {
+        "id": "region_8",
+        "order": 8,
+        "type": "text",
+        "transcription": "পরীক্ষায় asks: chaining vs probing তুলনা",
+        "confidence": "high"
+      }
+    ]
+  }
+}

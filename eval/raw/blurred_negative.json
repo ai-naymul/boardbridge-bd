@@ -1,0 +1,22 @@
+{
+  "image": "blurred_negative.jpg",
+  "extractStatus": 200,
+  "extractSec": 3.2,
+  "meta": {
+    "model": "gemma-4-31b-it",
+    "latencyMs": 3201,
+    "repaired": false
+  },
+  "artifact": {
+    "schemaVersion": "1.0",
+    "title": "Unusable Image",
+    "detectedLanguages": [],
+    "imageQuality": "unusable",
+    "regions": [],
+    "codeBlocks": [],
+    "warnings": [
+      "The image is completely overexposed/white and contains no legible content."
+    ]
+  },
+  "studypack": null
+}

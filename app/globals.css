@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #070b14;
+  --color-slate-panel: #0f1626;
+  --color-edge: #1e2a41;
+  --color-chalk: #e8edf7;
+  --color-muted: #8496b4;
+  --color-amber-glow: #f5b544;
+  --color-teal-glow: #35c8b0;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-ink);
+  color: var(--color-chalk);
+  /* Bengali conjuncts clip badly at tight leading */
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-bengali), var(--font-sans), system-ui, sans-serif;
+  background-image:
+    radial-gradient(ellipse 70% 55% at 12% -10%, rgba(53, 200, 176, 0.13), transparent),
+    radial-gradient(ellipse 60% 50% at 92% 0%, rgba(245, 181, 68, 0.1), transparent);
+  background-attachment: fixed;
+}
+
+/* Long unspaced Bangla strings must never blow out a 360px viewport */
+.bn-text {
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+code,
+pre,
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.panel {
+  background: color-mix(in srgb, var(--color-slate-panel) 88%, transparent);
+  border: 1px solid var(--color-edge);
+  backdrop-filter: blur(8px);
+}
+
+/* markdown output */
+.prose-board h1,
+.prose-board h2,
+.prose-board h3 {
+  font-weight: 650;
+  color: var(--color-chalk);
+  margin: 1.35em 0 0.5em;
+  line-height: 1.35;
+}
+.prose-board h1 { font-size: 1.5rem; }
+.prose-board h2 { font-size: 1.22rem; color: var(--color-teal-glow); }
+.prose-board h3 { font-size: 1.05rem; }
+.prose-board p,
+.prose-board li {
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+  margin: 0.5em 0;
+}
+.prose-board ul { list-style: disc; padding-left: 1.3rem; }
+.prose-board ol { list-style: decimal; padding-left: 1.4rem; }
+.prose-board strong { color: var(--color-amber-glow); font-weight: 600; }
+.prose-board pre {
+  background: #060a12;
+  border: 1px solid var(--color-edge);
+  border-radius: 0.6rem;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0.9em 0;
+}
+.prose-board :not(pre) > code {
+  background: #060a12;
+  border: 1px solid var(--color-edge);
+  border-radius: 0.35rem;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.85em;
+  color: var(--color-teal-glow);
+}
+.prose-board table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9rem; }
+.prose-board th, .prose-board td { border: 1px solid var(--color-edge); padding: 0.45rem 0.6rem; text-align: left; }
+
+textarea,
+input {
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(245, 181, 68, 0.28);
+}
