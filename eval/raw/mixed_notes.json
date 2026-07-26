@@ -1,10 +1,10 @@
 {
   "image": "mixed_notes.jpg",
   "extractStatus": 200,
-  "extractSec": 28.3,
+  "extractSec": 30.7,
   "meta": {
     "model": "gemma-4-31b-it",
-    "latencyMs": 28305,
+    "latencyMs": 29347,
     "repaired": false
   },
   "artifact": {
@@ -161,10 +161,10 @@
     "warnings": []
   },
   "studypackStatus": 200,
-  "studypackSec": 30.8,
+  "studypackSec": 31.4,
   "meta2": {
     "model": "gemma-4-31b-it",
-    "latencyMs": 30791,
+    "latencyMs": 30978,
     "repaired": false
   },
   "sourceSupportRate": 100,

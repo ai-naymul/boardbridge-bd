@@ -1,10 +1,10 @@
 {
   "image": "flow_pseudocode.jpg",
   "extractStatus": 200,
-  "extractSec": 32.5,
+  "extractSec": 34.2,
   "meta": {
     "model": "gemma-4-31b-it",
-    "latencyMs": 32519,
+    "latencyMs": 33220,
     "repaired": false
   },
   "artifact": {
@@ -185,10 +185,10 @@
     "warnings": []
   },
   "studypackStatus": 200,
-  "studypackSec": 28.2,
+  "studypackSec": 28.5,
   "meta2": {
     "model": "gemma-4-31b-it",
-    "latencyMs": 28246,
+    "latencyMs": 27677,
     "repaired": false
   },
   "sourceSupportRate": 100,

@@ -1,10 +1,10 @@
 {
   "image": "blurred_negative.jpg",
   "extractStatus": 200,
-  "extractSec": 3.2,
+  "extractSec": 4.6,
   "meta": {
     "model": "gemma-4-31b-it",
-    "latencyMs": 3201,
+    "latencyMs": 3985,
     "repaired": false
   },
   "artifact": {
