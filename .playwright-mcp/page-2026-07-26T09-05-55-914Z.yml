@@ -1,0 +1,95 @@
+- generic [active] [ref=f1e1]:
+  - main [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - generic [ref=f1e4]:
+        - generic [ref=f1e5]:
+          - heading "BoardBridge BD" [level=1] [ref=f1e6]
+          - paragraph [ref=f1e7]: এক ছবি থেকে যাচাই করা স্টাডি প্যাক — one whiteboard photo becomes verified notes, code and flashcards, with every item traceable back to the board.
+        - generic [ref=f1e8]:
+          - paragraph [ref=f1e9]: vision model
+          - paragraph [ref=f1e10]: gemma-4-31b-it
+      - list [ref=f1e11]:
+        - listitem [ref=f1e12]: 1. Gemma extracts
+        - listitem [ref=f1e13]: 2. App validates
+        - listitem [ref=f1e14]: 3. You verify
+        - listitem [ref=f1e15]: 4. Study pack generated
+    - generic [ref=f1e35]:
+      - generic [ref=f1e36]:
+        - img "Uploaded whiteboard" [ref=f1e37]
+        - generic [ref=f1e38]:
+          - paragraph [ref=f1e39]: Hash Table — হ্যাশ টেবিল
+          - generic [ref=f1e40]:
+            - generic [ref=f1e41]:
+              - term [ref=f1e42]: image quality
+              - definition [ref=f1e43]: good
+            - generic [ref=f1e44]:
+              - term [ref=f1e45]: languages
+              - definition [ref=f1e46]: bn, en
+            - generic [ref=f1e47]:
+              - term [ref=f1e48]: regions
+              - definition [ref=f1e49]: "10"
+            - generic [ref=f1e50]:
+              - term [ref=f1e51]: your corrections
+              - definition [ref=f1e52]: "0"
+            - generic [ref=f1e53]:
+              - term [ref=f1e54]: upload size
+              - definition [ref=f1e55]: 0.1MB → 97KB
+            - generic [ref=f1e56]:
+              - term [ref=f1e57]: extract latency
+              - definition [ref=f1e58]: 28.1s
+            - generic [ref=f1e179]:
+              - term [ref=f1e180]: study pack latency
+              - definition [ref=f1e181]: 30.9s
+        - button "← Start over with another board" [ref=f1e59]
+      - generic [ref=f1e60]:
+        - button "Regenerate study pack" [ref=f1e182]
+        - generic [ref=f1e183]:
+          - generic [ref=f1e184]:
+            - button "Notes" [ref=f1e185]
+            - button "Code1" [ref=f1e186]
+            - button "Flashcards6" [ref=f1e187]
+            - button "Evidence13" [ref=f1e188]
+            - generic [ref=f1e189]:
+              - button "Copy .md" [ref=f1e190]
+              - button "↓ .md" [ref=f1e191]
+              - button "↓ .json" [ref=f1e192]
+          - paragraph [ref=f1e194]: ⚠ Region r9 contains uncertain text regarding 'amortized rehash cost'.
+          - generic [ref=f1e195]:
+            - heading "Hash Table — হ্যাশ টেবিল" [level=1] [ref=f1e196]
+            - heading "মূল ধারণা" [level=2] [ref=f1e197]
+            - list [ref=f1e198]:
+              - listitem [ref=f1e199]: কী (key) কে hash function দিয়ে index এ map করা হয়।
+              - listitem [ref=f1e200]:
+                - strong [ref=f1e201]: "Hash Function:"
+                - code [ref=f1e202]: h(k) = k mod m
+                - text: (এখানে
+                - code [ref=f1e203]: m
+                - text: হলো table size, যা prime নেওয়া ভালো)।
+            - heading "Collision Handling" [level=2] [ref=f1e204]
+            - paragraph [ref=f1e205]: "Collision হলে দুটি উপায় আছে:"
+            - list [ref=f1e206]:
+              - listitem [ref=f1e207]:
+                - strong [ref=f1e208]: "Chaining:"
+                - text: প্রতি bucket এ linked list ব্যবহার করা হয়।
+              - listitem [ref=f1e209]:
+                - strong [ref=f1e210]: "Open addressing:"
+                - text: linear বা quadratic probing ব্যবহার করা হয়।
+            - heading "Performance & Scaling" [level=2] [ref=f1e211]
+            - list [ref=f1e212]:
+              - listitem [ref=f1e213]:
+                - strong [ref=f1e214]: "Time Complexity:"
+                - list [ref=f1e215]:
+                  - listitem [ref=f1e216]: "Average case: $O(1)$"
+                  - listitem [ref=f1e217]: "Worst case: $O(n)$"
+              - listitem [ref=f1e218]:
+                - strong [ref=f1e219]: "Load Factor ($\\alpha$):"
+                - text: $\alpha = n/m$। যদি $\alpha > 0.75$ হয়, তবে resize করতে হবে।
+            - heading "পরীক্ষার জন্য গুরুত্বপূর্ণ" [level=2] [ref=f1e220]
+            - list [ref=f1e221]:
+              - listitem [ref=f1e222]: Chaining এবং Probing এর মধ্যে তুলনা জানতে চাওয়া হয়।
+        - group [ref=f1e223]:
+          - generic "Edit the transcript again and regenerate" [ref=f1e224] [cursor=pointer]
+    - generic [ref=f1e27]:
+      - paragraph [ref=f1e28]: Your photo is processed in memory and never stored on our servers. Two separate gemma-4-31b-it calls run per board — one reads the image, one builds the study pack from the transcript you approved.
+      - paragraph [ref=f1e29]: Built for Build With Gemma @Bangladesh · Multimodal Track · prototype, not a substitute for your own notes.
+  - alert [ref=f1e30]
