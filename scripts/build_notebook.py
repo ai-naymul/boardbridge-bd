@@ -1,0 +1,219 @@
+"""Build boardbridge_gemma.ipynb from explicit line-lists.
+
+The previous generator embedded source as single strings assembled through nested
+shell/Python quoting, which silently turned some `\\n` escapes into raw newline bytes
+and produced cells that could not compile. Writing each cell as a list of lines (the
+standard nbformat shape) removes that quoting path entirely: every line here is a
+literal Python source line, never a string built by interpolating another string.
+"""
+import json
+
+def code(lines):
+    return {"cell_type": "code", "metadata": {}, "source": lines, "outputs": [], "execution_count": None}
+
+def md(lines):
+    return {"cell_type": "markdown", "metadata": {}, "source": lines}
+
+cells = [
+md([
+"# BoardBridge BD — reproducible Gemma 4 vision call\n",
+"\n",
+"Multimodal Track, Build With Gemma @Bangladesh. Live app: https://boardbridge-bd.vercel.app · Repo: https://github.com/ai-naymul/boardbridge-bd\n",
+"\n",
+"This notebook reproduces **stage 1** of the pipeline: a whiteboard photo goes to **`gemma-4-31b-it`** and comes back as a schema-validated `BoardArtifact`. The prompt below is byte-identical to `lib/prompts.ts` in the app.",
+]),
+
+code(["!pip install -q google-genai"]),
+
+md([
+"## API key\n",
+"\n",
+"The key is read from an environment variable / Kaggle Secret. **Never paste a key into a notebook cell** — its output is public.",
+]),
+
+code([
+"import os, json, base64, time\n",
+"from google import genai\n",
+"from google.genai import types\n",
+"\n",
+"# Kaggle: Add-ons -> Secrets -> GEMINI_API_KEY. Colab: userdata. Local: env var.\n",
+"try:\n",
+"    from kaggle_secrets import UserSecretsClient\n",
+"    API_KEY = UserSecretsClient().get_secret(\"GEMINI_API_KEY\")\n",
+"except Exception:\n",
+"    API_KEY = os.environ[\"GEMINI_API_KEY\"]\n",
+"\n",
+"MODEL = \"gemma-4-31b-it\"\n",
+"client = genai.Client(api_key=API_KEY)\n",
+"print(\"model:\", MODEL)",
+]),
+
+md(["## The extraction system prompt (verbatim from `lib/prompts.ts`)"]),
+
+code([
+"EXTRACTION_SYSTEM = \"\"\"You transcribe photographed classroom whiteboards from Bangladesh into structured JSON.\n",
+"\n",
+"FAITHFULNESS RULES — these override everything else:\n",
+"- Transcribe EXACTLY what is written on the board. Preserve Bangla, English, Bangla-English\n",
+"  code-switching, Bangla numerals, symbols and mathematical notation as they appear.\n",
+"- Do NOT translate. Do NOT correct spelling, grammar or notation.\n",
+"- Keep English technical vocabulary in English.\n",
+"\n",
+"UNCERTAINTY RULES:\n",
+"- If a span is smudged or illegible, transcribe your best guess, list that span in\n",
+"  \\\"uncertainSpans\\\", and set that region confidence to \\\"low\\\". Never silently guess.\n",
+"\n",
+"EMPTY / UNUSABLE INPUT:\n",
+"- If the image contains no legible board content, return \\\"imageQuality\\\":\\\"unusable\\\", an\n",
+"  EMPTY \\\"regions\\\" array, and explain why in \\\"warnings\\\". NEVER invent board content.\n",
+"\n",
+"STRUCTURE:\n",
+"- One region per visual block. \\\"order\\\" follows reading order. Ids are r1, r2, r3, ...\n",
+"\n",
+"Output JSON only.\"\"\"\n",
+"print(len(EXTRACTION_SYSTEM), \"chars\")",
+]),
+
+md(["## Schema sent as `responseJsonSchema`"]),
+
+code([
+"SCHEMA = {\n",
+"  \"type\": \"object\",\n",
+"  \"properties\": {\n",
+"    \"title\": {\"type\": \"string\"},\n",
+"    \"detectedLanguages\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}},\n",
+"    \"imageQuality\": {\"type\": \"string\", \"enum\": [\"good\", \"fair\", \"poor\", \"unusable\"]},\n",
+"    \"regions\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\n",
+"        \"id\": {\"type\": \"string\"}, \"order\": {\"type\": \"integer\"},\n",
+"        \"type\": {\"type\": \"string\"}, \"transcription\": {\"type\": \"string\"},\n",
+"        \"confidence\": {\"type\": \"string\", \"enum\": [\"high\", \"medium\", \"low\"]},\n",
+"        \"uncertainSpans\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}},\n",
+"      \"required\": [\"id\", \"order\", \"type\", \"transcription\", \"confidence\"]}},\n",
+"    \"warnings\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}},\n",
+"  \"required\": [\"title\", \"detectedLanguages\", \"imageQuality\", \"regions\"]}",
+]),
+
+md([
+"## The board\n",
+"\n",
+"Boards are author-created for this submission (`eval/make_boards.py` in the repo) — not photos of real classrooms, not scraped. Swap in your own photo below.",
+]),
+
+code([
+"IMAGE_PATH = \"../eval/images/mixed_notes.jpg\"   # or any whiteboard photo\n",
+"image_bytes = open(IMAGE_PATH, \"rb\").read()\n",
+"print(len(image_bytes), \"bytes\")",
+]),
+
+md(["## The call"]),
+
+code([
+"t0 = time.time()\n",
+"resp = client.models.generate_content(\n",
+"    model=MODEL,\n",
+"    contents=[types.Part.from_bytes(data=image_bytes, mime_type=\"image/jpeg\"),\n",
+"              \"Transcribe this whiteboard photograph into the BoardArtifact JSON structure.\"],\n",
+"    config=types.GenerateContentConfig(\n",
+"        system_instruction=EXTRACTION_SYSTEM,\n",
+"        temperature=0,\n",
+"        response_mime_type=\"application/json\",\n",
+"        response_json_schema=SCHEMA,\n",
+"        thinking_config=types.ThinkingConfig(thinking_level=\"minimal\")))\n",
+"print(f\"latency: {time.time()-t0:.1f}s\")",
+]),
+
+md([
+"## Structural decode + validation\n",
+"\n",
+"Gemma occasionally appends trailing prose or wraps the object in a single-element array, so we decode the **first complete JSON value** rather than calling `json.loads` on the whole string. This mirrors `firstJsonValue` in `lib/gemma.ts`. It is a structural decode, not a regex scrape.",
+]),
+
+code([
+"def first_json_value(text):\n",
+"    s = text.strip()\n",
+"    if s.startswith(\"```\"):\n",
+"        s = s.split(chr(10), 1)[1].rsplit(\"```\", 1)[0].strip()\n",
+"    start = min(i for i in (s.find(\"{\"), s.find(\"[\")) if i != -1)\n",
+"    obj, _ = json.JSONDecoder().raw_decode(s[start:])\n",
+"    if isinstance(obj, list):\n",
+"        obj = next(x for x in obj if isinstance(x, dict))\n",
+"    return obj\n",
+"\n",
+"artifact = first_json_value(resp.text)\n",
+"\n",
+"REQUIRED = {\"title\", \"detectedLanguages\", \"imageQuality\", \"regions\"}\n",
+"assert REQUIRED <= set(artifact), f\"missing keys: {REQUIRED - set(artifact)}\"\n",
+"for r in artifact[\"regions\"]:\n",
+"    assert {\"id\", \"order\", \"type\", \"transcription\", \"confidence\"} <= set(r)\n",
+"    assert r[\"confidence\"] in (\"high\", \"medium\", \"low\")\n",
+"print(\"schema OK —\", len(artifact[\"regions\"]), \"regions\")",
+]),
+
+md(["## Sample output"]),
+
+code([
+"print(\"title:    \", artifact[\"title\"])\n",
+"print(\"languages:\", artifact[\"detectedLanguages\"])\n",
+"print(\"quality:  \", artifact[\"imageQuality\"])\n",
+"print()\n",
+"for r in artifact[\"regions\"]:\n",
+"    flag = \"  <-- UNCERTAIN\" if r.get(\"uncertainSpans\") else \"\"\n",
+"    print(f\"[{r['id']}] {r['type']:<16} conf={r['confidence']:<6}{flag}\")\n",
+"    print(\"     \", r[\"transcription\"][:110].replace(chr(10), \" / \"))",
+]),
+
+md([
+"## The negative control — the case that matters most\n",
+"\n",
+"An unreadable board must return `imageQuality: \"unusable\"` with **zero** regions, not invented lecture notes. A student who missed the class cannot tell a correct summary from a confident invention.",
+]),
+
+code([
+"neg = open(\"../eval/images/blurred_negative.jpg\", \"rb\").read()\n",
+"r2 = client.models.generate_content(\n",
+"    model=MODEL,\n",
+"    contents=[types.Part.from_bytes(data=neg, mime_type=\"image/jpeg\"),\n",
+"              \"Transcribe this whiteboard photograph into the BoardArtifact JSON structure.\"],\n",
+"    config=types.GenerateContentConfig(\n",
+"        system_instruction=EXTRACTION_SYSTEM, temperature=0,\n",
+"        response_mime_type=\"application/json\", response_json_schema=SCHEMA,\n",
+"        thinking_config=types.ThinkingConfig(thinking_level=\"minimal\")))\n",
+"neg_art = first_json_value(r2.text)\n",
+"print(\"imageQuality:\", neg_art[\"imageQuality\"])\n",
+"print(\"regions:     \", len(neg_art[\"regions\"]))\n",
+"print(\"warnings:    \", neg_art.get(\"warnings\"))\n",
+"assert neg_art[\"imageQuality\"] == \"unusable\" and not neg_art[\"regions\"], \"FABRICATION DETECTED\"\n",
+"print(chr(10) + \"PASS — refused to fabricate content from an unreadable board.\")",
+]),
+
+md([
+"## Results and limitations\n",
+"\n",
+"Measured on n = 3 boards (full method + raw outputs in `eval/` in the repo):\n",
+"\n",
+"| Board | Quality | Regions | Key-fact recall | Source-support | Extract |\n",
+"|---|---|---|---|---|---|\n",
+"| Bangla+English hash tables | good | 10 | 10/10 | 100 % (13/13) | 28.3 s |\n",
+"| BFS flowchart + pseudocode | good | 12 | 8/8 | 100 % (9/9) | 32.5 s |\n",
+"| Unreadable control | unusable | 0 | — | — | 3.2 s |\n",
+"\n",
+"**Limitations.** n = 3 supports no statistical claim. The boards are author-generated renders with photo-style degradation, not real marker handwriting, so these are an upper bound. No formal user testing was conducted. One real transcription error (হ্যাঁ → হাঁ) went unflagged — documented in `eval/results.md`. Latency of ~30 s per stage is slow for mobile data.\n",
+"\n",
+"**Stage 2** (verified transcript → study pack) is in `app/api/studypack/route.ts`; run the whole pipeline against any instance with `python3 scripts/e2e.py <base-url>`.",
+]),
+]
+
+nb = {
+    "cells": cells,
+    "metadata": {
+        "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
+        "language_info": {"name": "python"},
+    },
+    "nbformat": 4,
+    "nbformat_minor": 5,
+}
+
+with open("notebook/boardbridge_gemma.ipynb", "w") as f:
+    json.dump(nb, f, indent=1, ensure_ascii=False)
+
+print("wrote", len(cells), "cells")
