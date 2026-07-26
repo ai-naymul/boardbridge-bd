@@ -99,17 +99,17 @@ export default function ImageDropzone({
         }}
         onClick={() => !busy && inputRef.current?.click()}
         className={`panel cursor-pointer rounded-2xl border-2 border-dashed p-8 text-center transition sm:p-14 ${
-          dragging ? 'border-[--color-teal-glow] bg-white/5' : 'border-[--color-edge]'
-        } ${busy ? 'pointer-events-none opacity-50' : 'hover:border-[--color-amber-glow]'}`}
+          dragging ? 'border-(--color-teal-glow) bg-white/5' : 'border-(--color-edge)'
+        } ${busy ? 'pointer-events-none opacity-50' : 'hover:border-(--color-amber-glow)'}`}
       >
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[--color-amber-glow]/12 text-2xl">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-(--color-amber-glow)/12 text-2xl">
           🖼️
         </div>
         <p className="text-base font-semibold">Upload a whiteboard photo</p>
-        <p className="bn-text mt-1 text-sm text-[--color-muted]">
+        <p className="bn-text mt-1 text-sm text-(--color-muted)">
           ছবি তুলুন বা টেনে আনুন — JPEG / PNG / WebP
         </p>
-        <p className="mt-3 text-xs text-[--color-muted]">
+        <p className="mt-3 text-xs text-(--color-muted)">
           Resized to {MAX_EDGE}px in your browser before upload, to save mobile data.
         </p>
         <input
@@ -123,7 +123,7 @@ export default function ImageDropzone({
       </div>
 
       <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-        <span className="text-[--color-muted]">Or try a sample board:</span>
+        <span className="text-(--color-muted)">Or try a sample board:</span>
         {[
           ['mixed_notes.jpg', 'Hash table (BN+EN)'],
           ['flow_pseudocode.jpg', 'BFS flowchart'],
@@ -133,7 +133,7 @@ export default function ImageDropzone({
             key={file}
             disabled={busy}
             onClick={() => loadSample(file)}
-            className="rounded-lg border border-[--color-edge] bg-white/5 px-3 py-1.5 transition hover:border-[--color-teal-glow] hover:text-[--color-teal-glow] disabled:opacity-40"
+            className="rounded-lg border border-(--color-edge) bg-white/5 px-3 py-1.5 transition hover:border-(--color-teal-glow) hover:text-(--color-teal-glow) disabled:opacity-40"
           >
             {label}
           </button>

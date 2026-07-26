@@ -1,0 +1,30 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - heading "BoardBridge BD" [level=1] [ref=e6]
+          - paragraph [ref=e7]: এক ছবি থেকে যাচাই করা স্টাডি প্যাক — one whiteboard photo becomes verified notes, code and flashcards, with every item traceable back to the board.
+        - generic [ref=e8]:
+          - paragraph [ref=e9]: vision model
+          - paragraph [ref=e10]: …
+      - list [ref=e11]:
+        - listitem [ref=e12]: 1. Gemma extracts
+        - listitem [ref=e13]: 2. App validates
+        - listitem [ref=e14]: 3. You verify
+        - listitem [ref=e15]: 4. Study pack generated
+    - generic [ref=e16]:
+      - generic [ref=e17] [cursor=pointer]:
+        - generic [ref=e18]: 🖼️
+        - paragraph [ref=e19]: Upload a whiteboard photo
+        - paragraph [ref=e20]: ছবি তুলুন বা টেনে আনুন — JPEG / PNG / WebP
+        - paragraph [ref=e21]: Resized to 1600px in your browser before upload, to save mobile data.
+      - generic [ref=e22]:
+        - generic [ref=e23]: "Or try a sample board:"
+        - button "Hash table (BN+EN)" [ref=e24]
+        - button "BFS flowchart" [ref=e25]
+        - button "Unreadable board" [ref=e26]
+    - generic [ref=e27]:
+      - paragraph [ref=e28]: Your photo is processed in memory and never stored on our servers. Two separate … calls run per board — one reads the image, one builds the study pack from the transcript you approved.
+      - paragraph [ref=e29]: Built for Build With Gemma @Bangladesh · Multimodal Track · prototype, not a substitute for your own notes.
+  - alert [ref=e30]

@@ -3,8 +3,8 @@
 import type { BoardArtifact, Region } from '@/lib/schemas';
 
 const CONFIDENCE_LABEL: Record<Region['confidence'], { bn: string; cls: string }> = {
-  high: { bn: 'উচ্চ', cls: 'border-[--color-teal-glow]/45 bg-[--color-teal-glow]/12 text-[--color-teal-glow]' },
-  medium: { bn: 'মাঝারি', cls: 'border-[--color-amber-glow]/45 bg-[--color-amber-glow]/12 text-[--color-amber-glow]' },
+  high: { bn: 'উচ্চ', cls: 'border-(--color-teal-glow)/45 bg-(--color-teal-glow)/12 text-(--color-teal-glow)' },
+  medium: { bn: 'মাঝারি', cls: 'border-(--color-amber-glow)/45 bg-(--color-amber-glow)/12 text-(--color-amber-glow)' },
   low: { bn: 'কম', cls: 'border-red-400/45 bg-red-400/12 text-red-300' },
 };
 
@@ -57,7 +57,7 @@ export default function RegionEditor({
     return (
       <div className="panel rounded-xl p-6 text-center">
         <p className="font-semibold text-amber-300">No regions were extracted.</p>
-        <p className="bn-text mt-2 text-sm text-[--color-muted]">
+        <p className="bn-text mt-2 text-sm text-(--color-muted)">
           Gemma reported image quality <strong>{artifact.imageQuality}</strong> and returned no
           content rather than guessing at what the board might have said.
         </p>
@@ -75,35 +75,35 @@ export default function RegionEditor({
             className={`panel rounded-xl p-3.5 transition ${r.unreadable ? 'opacity-45' : ''}`}
           >
             <div className="mb-2 flex flex-wrap items-center gap-2 text-[11px]">
-              <span className="mono rounded bg-white/8 px-1.5 py-0.5 text-[--color-muted]">
+              <span className="mono rounded bg-white/8 px-1.5 py-0.5 text-(--color-muted)">
                 {r.id}
               </span>
-              <span className="rounded border border-[--color-edge] px-1.5 py-0.5 text-[--color-muted]">
+              <span className="rounded border border-(--color-edge) px-1.5 py-0.5 text-(--color-muted)">
                 {r.type}
               </span>
               <span className={`rounded border px-1.5 py-0.5 ${conf.cls}`}>
                 confidence {conf.bn}
               </span>
               {r.languageTags.map((t) => (
-                <span key={t} className="rounded bg-white/5 px-1.5 py-0.5 text-[--color-muted]">
+                <span key={t} className="rounded bg-white/5 px-1.5 py-0.5 text-(--color-muted)">
                   {t}
                 </span>
               ))}
               {r.edited && (
-                <span className="rounded border border-[--color-teal-glow]/50 bg-[--color-teal-glow]/12 px-1.5 py-0.5 text-[--color-teal-glow]">
+                <span className="rounded border border-(--color-teal-glow)/50 bg-(--color-teal-glow)/12 px-1.5 py-0.5 text-(--color-teal-glow)">
                   ✎ edited by you
                 </span>
               )}
               <span className="ml-auto flex gap-1">
                 <button
                   onClick={() => update(r.id, { unreadable: !r.unreadable })}
-                  className="rounded border border-[--color-edge] px-2 py-0.5 text-[--color-muted] transition hover:border-amber-400/60 hover:text-amber-300"
+                  className="rounded border border-(--color-edge) px-2 py-0.5 text-(--color-muted) transition hover:border-amber-400/60 hover:text-amber-300"
                 >
                   {r.unreadable ? 'restore' : 'mark unreadable'}
                 </button>
                 <button
                   onClick={() => remove(r.id)}
-                  className="rounded border border-[--color-edge] px-2 py-0.5 text-[--color-muted] transition hover:border-red-400/60 hover:text-red-300"
+                  className="rounded border border-(--color-edge) px-2 py-0.5 text-(--color-muted) transition hover:border-red-400/60 hover:text-red-300"
                 >
                   delete
                 </button>
@@ -127,7 +127,7 @@ export default function RegionEditor({
               onChange={(e) => update(r.id, { transcription: e.target.value, edited: true })}
               rows={Math.min(8, Math.max(2, r.transcription.split('\n').length + 1))}
               spellCheck={false}
-              className={`bn-text w-full rounded-lg border border-[--color-edge] bg-black/35 px-3 py-2 text-sm outline-none transition focus:border-[--color-teal-glow] ${
+              className={`bn-text w-full rounded-lg border border-(--color-edge) bg-black/35 px-3 py-2 text-sm outline-none transition focus:border-(--color-teal-glow) ${
                 r.type === 'code' || r.type === 'pseudocode' ? 'mono' : ''
               }`}
             />

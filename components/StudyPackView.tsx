@@ -19,7 +19,7 @@ function SourceChips({ ids, unsupported }: { ids: string[]; unsupported: boolean
       {ids.map((id) => (
         <span
           key={id}
-          className="mono rounded border border-[--color-teal-glow]/40 bg-[--color-teal-glow]/10 px-1.5 py-0.5 text-[10px] text-[--color-teal-glow]"
+          className="mono rounded border border-(--color-teal-glow)/40 bg-(--color-teal-glow)/10 px-1.5 py-0.5 text-[10px] text-(--color-teal-glow)"
         >
           {id}
         </span>
@@ -37,15 +37,15 @@ function Flashcard({
   return (
     <button
       onClick={() => setOpen((o) => !o)}
-      className="panel w-full rounded-xl p-4 text-left transition hover:border-[--color-amber-glow]/50"
+      className="panel w-full rounded-xl p-4 text-left transition hover:border-(--color-amber-glow)/50"
     >
       <p className="bn-text text-sm font-semibold">{card.front}</p>
       {open ? (
-        <p className="bn-text mt-2 border-t border-[--color-edge] pt-2 text-sm text-[--color-muted]">
+        <p className="bn-text mt-2 border-t border-(--color-edge) pt-2 text-sm text-(--color-muted)">
           {card.back}
         </p>
       ) : (
-        <p className="mt-2 text-xs text-[--color-muted]">tap to reveal answer</p>
+        <p className="mt-2 text-xs text-(--color-muted)">tap to reveal answer</p>
       )}
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
         <SourceChips ids={card.sourceRegionIds} unsupported={card.unsupported} />
@@ -110,8 +110,8 @@ export default function StudyPackView({
             onClick={() => setTab(id)}
             className={`rounded-lg px-3 py-1.5 text-sm transition ${
               tab === id
-                ? 'bg-[--color-amber-glow]/15 text-[--color-amber-glow] ring-1 ring-[--color-amber-glow]/40'
-                : 'text-[--color-muted] hover:text-[--color-chalk]'
+                ? 'bg-(--color-amber-glow)/15 text-(--color-amber-glow) ring-1 ring-(--color-amber-glow)/40'
+                : 'text-(--color-muted) hover:text-(--color-chalk)'
             }`}
           >
             {label}
@@ -125,13 +125,13 @@ export default function StudyPackView({
               setCopied(true);
               setTimeout(() => setCopied(false), 1600);
             }}
-            className="rounded-lg border border-[--color-edge] px-3 py-1.5 text-xs transition hover:border-[--color-teal-glow] hover:text-[--color-teal-glow]"
+            className="rounded-lg border border-(--color-edge) px-3 py-1.5 text-xs transition hover:border-(--color-teal-glow) hover:text-(--color-teal-glow)"
           >
             {copied ? '✓ copied' : 'Copy .md'}
           </button>
           <button
             onClick={() => download('boardbridge-notes.md', markdown, 'text/markdown')}
-            className="rounded-lg border border-[--color-edge] px-3 py-1.5 text-xs transition hover:border-[--color-teal-glow] hover:text-[--color-teal-glow]"
+            className="rounded-lg border border-(--color-edge) px-3 py-1.5 text-xs transition hover:border-(--color-teal-glow) hover:text-(--color-teal-glow)"
           >
             ↓ .md
           </button>
@@ -143,7 +143,7 @@ export default function StudyPackView({
                 'application/json'
               )
             }
-            className="rounded-lg border border-[--color-edge] px-3 py-1.5 text-xs transition hover:border-[--color-teal-glow] hover:text-[--color-teal-glow]"
+            className="rounded-lg border border-(--color-edge) px-3 py-1.5 text-xs transition hover:border-(--color-teal-glow) hover:text-(--color-teal-glow)"
           >
             ↓ .json
           </button>
@@ -169,15 +169,15 @@ export default function StudyPackView({
       {tab === 'code' && (
         <div className="space-y-3">
           {pack.codeBlocks.length === 0 && (
-            <p className="text-sm text-[--color-muted]">No code was found on this board.</p>
+            <p className="text-sm text-(--color-muted)">No code was found on this board.</p>
           )}
           {pack.codeBlocks.map((c, i) => (
             <div key={i}>
-              <div className="mb-1.5 flex items-center gap-2 text-[11px] text-[--color-muted]">
+              <div className="mb-1.5 flex items-center gap-2 text-[11px] text-(--color-muted)">
                 <span className="mono">{c.language}</span>
                 <SourceChips ids={c.sourceRegionIds} unsupported={c.unsupported} />
               </div>
-              <pre className="mono overflow-x-auto rounded-lg border border-[--color-edge] bg-black/45 p-3 text-xs leading-relaxed">
+              <pre className="mono overflow-x-auto rounded-lg border border-(--color-edge) bg-black/45 p-3 text-xs leading-relaxed">
                 {c.code}
               </pre>
             </div>
@@ -195,23 +195,23 @@ export default function StudyPackView({
 
       {tab === 'evidence' && (
         <div className="space-y-4 text-sm">
-          <div className="rounded-lg border border-[--color-edge] bg-black/25 p-3">
-            <p className="text-xs text-[--color-muted]">Source-support rate</p>
-            <p className="text-2xl font-semibold text-[--color-teal-glow]">
+          <div className="rounded-lg border border-(--color-edge) bg-black/25 p-3">
+            <p className="text-xs text-(--color-muted)">Source-support rate</p>
+            <p className="text-2xl font-semibold text-(--color-teal-glow)">
               {supportRate}%
-              <span className="ml-2 text-xs font-normal text-[--color-muted]">
+              <span className="ml-2 text-xs font-normal text-(--color-muted)">
                 {supported} of {derived.length} generated items cite a real board region
               </span>
             </p>
           </div>
           {pack.keyTerms.length > 0 && (
             <div>
-              <p className="mb-2 text-xs uppercase tracking-wide text-[--color-muted]">Key terms</p>
+              <p className="mb-2 text-xs uppercase tracking-wide text-(--color-muted)">Key terms</p>
               <div className="space-y-2">
                 {pack.keyTerms.map((t, i) => (
                   <div key={i} className="flex flex-wrap items-baseline gap-2">
                     <span className="font-semibold">{t.term}</span>
-                    <span className="bn-text text-[--color-muted]">{t.bnGloss}</span>
+                    <span className="bn-text text-(--color-muted)">{t.bnGloss}</span>
                     <SourceChips ids={t.sourceRegionIds} unsupported={t.unsupported} />
                   </div>
                 ))}
@@ -219,14 +219,14 @@ export default function StudyPackView({
             </div>
           )}
           <div>
-            <p className="mb-2 text-xs uppercase tracking-wide text-[--color-muted]">
+            <p className="mb-2 text-xs uppercase tracking-wide text-(--color-muted)">
               Board regions this pack was built from
             </p>
             <div className="space-y-1.5">
               {artifact.regions.map((r) => (
                 <div key={r.id} className="flex gap-2 text-xs">
-                  <span className="mono shrink-0 text-[--color-teal-glow]">{r.id}</span>
-                  <span className="bn-text text-[--color-muted] line-clamp-2">
+                  <span className="mono shrink-0 text-(--color-teal-glow)">{r.id}</span>
+                  <span className="bn-text text-(--color-muted) line-clamp-2">
                     {r.transcription.slice(0, 160)}
                   </span>
                 </div>
