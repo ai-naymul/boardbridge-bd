@@ -19,3 +19,4 @@ docs/kaggle_writeup.md
 .agents/
 .claude/
 .playwright-mcp/
+skills-lock.json
